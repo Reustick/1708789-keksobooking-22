@@ -1,7 +1,6 @@
 // Функция генерирующая объекты для бронирования
 import { getArrayRandomLength, getRandomInteger, getRandomInRange, getRandomIntInclusive } from './util.js';
-const QUANTITY_BOOKINGS_OBJECT = 10;
-function getBookingsObject() {
+const getBookingsObject = () => {
   const locations={
     x: getRandomInRange(35.65,35.7,5),
     y: getRandomInRange(139.7,139.8,5),
@@ -34,8 +33,5 @@ function getBookingsObject() {
       locations,
     },
   };
-}
-
-// Создаем пустой массив куда будут генерироваться случайные элементы объекта
-const bookingsObject = new Array(QUANTITY_BOOKINGS_OBJECT).fill(null).map(() => getBookingsObject());
-alert(bookingsObject);
+};
+getBookingsObject();

@@ -5,21 +5,14 @@ const getRandomIntInclusive = (min,max) => {
   max=Math.floor(max);
   return min>=0&&max>=0&&min<max? Math.floor(Math.random()*(max-min+1))+min:alert('Диапазон чисел не может быть отрицательным'); //Максимум и минимум включаются
 }
-getRandomIntInclusive(1,2);
-
 // Функция, возвращающая случайное число с плавающей точкой из переданного диапазона включительно
 const getRandomInRange = (min, max,simbolsAfterComma) => {
-
   return min>=0 && max>=0 && min<max ? ((Math.random() * (max - min + 1) + min).toFixed(simbolsAfterComma)) : alert('Диапазон чисел не может быть отрицательным');
 }
-getRandomInRange(1,2,2);
-
 // Функция генерирующая случайное число для поля цены и количества комнат
 const getRandomInteger = () => {
   return Math.floor(Math.random() * 1000 + 1000);
 }
-getRandomInteger();
-
 // Функция, которая создает массив сулчайной длинны для поля features и photos
 const getArrayRandomLength = (count) => {
   let variables = getRandomIntInclusive(1, count.length);
