@@ -34,4 +34,4 @@ const getBookingsObject = () => {
     },
   };
 };
-getBookingsObject();
+export {getBookingsObject};
