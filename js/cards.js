@@ -1,4 +1,13 @@
 import { getBookingsObject } from './data.js';
+const generatePhoto = (parent, photosUrl) => {
+  const photoList = parent.querySelector('.popup__photos');
+  const photoItem = photoList.querySelector('.popup__photo');
+  photoList.removeChild(photoItem);
+  photosUrl.forEach((element) => {
+    const newPhoto = photoItem.cloneNode(true);
+    photoList.appendChild(newPhoto).src = element;
+  });
+};
 const transformType = (type) => {
   switch (type) {
     case 'flat':
@@ -12,15 +21,6 @@ const transformType = (type) => {
     default:
       return 'Выберите тип жилья';  
   }
-};
-const generatePhoto = (parent, photosUrl) => {
-  const photoList = parent.querySelector('.popup__photos');
-  const photoItem = photoList.querySelector('.popup__photo');
-  photoList.removeChild(photoItem);
-  photosUrl.forEach((element) => {
-    const newPhoto = photoItem.cloneNode(true);
-    photoList.appendChild(newPhoto).src = element;
-  });
 };
 const createPopup = (offer) => {
   const cardElement = document.querySelector('#card').content.querySelector('.popup').cloneNode(true);
