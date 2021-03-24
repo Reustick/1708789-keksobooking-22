@@ -46,7 +46,7 @@ const createPopup = (offer) => {
   cardElement.querySelector('.popup__avatar').src = offer.author.avatar;
   return cardElement;
 }
-const offer = getBookingsObject();
-const card = createPopup(offer);
-const mapCanvas = document.querySelector('#map-canvas');
-mapCanvas.appendChild(card);
+// const offer = getBookingsObject();
+// const card = createPopup(offer);
+// const mapCanvas = document.querySelector('#map-canvas');
+// mapCanvas.appendChild(card);
