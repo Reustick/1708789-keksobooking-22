@@ -1,4 +1,3 @@
-import { createBookingsObject } from './data.js';
 const generatePhoto = (parent, photosUrl) => {
   const photoList = parent.querySelector('.popup__photos');
   const photoItem = photoList.querySelector('.popup__photo');
@@ -18,11 +17,9 @@ const transformType = (type) => {
       return 'Дом';
     case 'palace':
       return 'Дворец';
-    default:
-      return 'Выберите тип жилья';  
   }
 };
-const createPopup = (offer) => {
+const createPopupCard = (offer) => {
   const cardElement = document.querySelector('#card').content.querySelector('.popup').cloneNode(true);
   cardElement.querySelector('.popup__title').textContent = offer.offer.title;                                                                    // загаловок
   cardElement.querySelector('.popup__text--address').textContent = offer.offer.address;                                                         // адрес
@@ -36,4 +33,4 @@ const createPopup = (offer) => {
   cardElement.querySelector('.popup__avatar').src = offer.author.avatar;                                                                // аватар
   return cardElement;
 }
-export { createPopup };
+export { createPopupCard };

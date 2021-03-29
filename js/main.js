@@ -1,7 +1,6 @@
-import './data.js';
-import './cards.js';
 import './form.js';
 import { disableForm } from './disable-form.js';
-import  './map.js';
+import { initMap} from './map.js';
 
 disableForm (true);
+initMap();
