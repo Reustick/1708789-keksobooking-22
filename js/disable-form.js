@@ -6,9 +6,9 @@ const setDisabledForElements = (elements, state) => {
 
 const disableForm = (state) => {
   const adForm = document.querySelector('.ad-form');
-  const adFormFieldsets = document.querySelector('fieldset');
+  const adFormFieldsets = document.querySelectorAll('fieldset');
   const filtersForm = document.querySelector('.map__filters');
-  const filtersFormSelects = filtersForm.querySelector('.map__filter');
+  const filtersFormSelects = filtersForm.querySelectorAll('.map__filter');
   const filtersFormFeatures = filtersForm.querySelector('.map__features');
 
   if (!state) {
