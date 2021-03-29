@@ -1,4 +1,4 @@
-import { getBookingsObject } from './data.js';
+import { createBookingsObject } from './data.js';
 const generatePhoto = (parent, photosUrl) => {
   const photoList = parent.querySelector('.popup__photos');
   const photoItem = photoList.querySelector('.popup__photo');
@@ -24,29 +24,16 @@ const transformType = (type) => {
 };
 const createPopup = (offer) => {
   const cardElement = document.querySelector('#card').content.querySelector('.popup').cloneNode(true);
-  // загаловок
-  cardElement.querySelector('.popup__title').textContent = offer.offer.title;
-  // адрес
-  cardElement.querySelector('.popup__text--address').textContent = offer.offer.address;
-  // цена
-  cardElement.querySelector('.popup__text--price').textContent = `${offer.offer.price} ₽/ночь`;
-  // тип жилья
-  cardElement.querySelector('.popup__type').textContent = transformType(offer.type);
-  // количество комнат и гостей 
-  cardElement.querySelector('.popup__text--capacity').textContent = `${offer.offer.rooms} комнаты для ${offer.offer.guests} гостей`;
-  // время заезда и выезда
-  cardElement.querySelector('.popup__text--time').textContent = `Заезд после ${offer.offer.checkin}, выезд до ${offer.offer.checkout}`;
-  // удобства
-  cardElement.querySelector('.popup__features').textContent = offer.offer.features;
-  // Описание недвижимости
-  cardElement.querySelector('.popup__description').textContent = offer.offer.description;
-  // фото
-  generatePhoto(cardElement,offer.offer.photos);
-  // аватар
-  cardElement.querySelector('.popup__avatar').src = offer.author.avatar;
+  cardElement.querySelector('.popup__title').textContent = offer.offer.title;                                                                    // загаловок
+  cardElement.querySelector('.popup__text--address').textContent = offer.offer.address;                                                         // адрес
+  cardElement.querySelector('.popup__text--price').textContent = `${offer.offer.price} ₽/ночь`;                                                // цена
+  cardElement.querySelector('.popup__type').textContent = transformType(offer.type);                                                          // тип жилья
+  cardElement.querySelector('.popup__text--capacity').textContent = `${offer.offer.rooms} комнаты для ${offer.offer.guests} гостей`;         // количество комнат и гостей 
+  cardElement.querySelector('.popup__text--time').textContent = `Заезд после ${offer.offer.checkin}, выезд до ${offer.offer.checkout}`;     // время заезда и выезда
+  cardElement.querySelector('.popup__features').textContent = offer.offer.features;                                                        // удобства
+  cardElement.querySelector('.popup__description').textContent = offer.offer.description;                                                 // Описание недвижимости
+  generatePhoto(cardElement,offer.offer.photos);                                                                                         // фото
+  cardElement.querySelector('.popup__avatar').src = offer.author.avatar;                                                                // аватар
   return cardElement;
 }
-// const offer = getBookingsObject();
-// const card = createPopup(offer);
-// const mapCanvas = document.querySelector('#map-canvas');
-// mapCanvas.appendChild(card);
+export { createPopup };

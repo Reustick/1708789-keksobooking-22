@@ -1,34 +1,23 @@
 /* global L:readonly */
-import { DisableForm } from './disable-form.js';
+import { disableForm } from './disable-form.js';
+import { createPopup } from './cards.js';
+import { createBookingsObject } from './data.js';
+import { START_COORDINATES, MAP_ZOOM, MAP_IMAGES_URL, MAP_ATTRIBUTION, SYMBOLS_AFTER_COMA, QUANTITY_OF_OFFERS } from './const.js';
 
 const addressField = document.querySelector('#address');
-const startCoordinates = {
-  lat: 35.6729,
-  lng: 139.7564,
-  toString() {
-    return `Координата x: ${this.lat} Координата y: ${this.lng}`;
-  },
-};
-
-
-
-console.log('fasfsa' + startCoordinates);
-
-
 const map = L.map('map-canvas')
   .on('load', () => {
-    DisableForm(false);
-    console.log('карта инициализирована');
+    disableForm(false);
   })
   .setView({
-    lat: startCoordinates.lat,
-    lng: startCoordinates.lng,
-  }, 16);
+    lat: START_COORDINATES.lat,
+    lng: START_COORDINATES.lng,
+  }, MAP_ZOOM);
 
 L.tileLayer(
-  'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+  MAP_IMAGES_URL,
   {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    attribution: MAP_ATTRIBUTION,
   },
 ).addTo(map);
 
@@ -40,18 +29,53 @@ const mainPinIcon = L.icon({
 
 const mainPinMarker = L.marker(
   {
-    lat: startCoordinates.lat,
-    lng: startCoordinates.lng,
+    lat: START_COORDINATES.lat,
+    lng: START_COORDINATES.lng,
   },
   {
     draggable: true,
     icon: mainPinIcon,
   },
-);
-  
-mainPinMarker.addTo(map);
+).addTo(map);
 
-mainPinMarker.on('moveend', (evt) => {
-  evt.target.getLatLng()
+const getAddress = (x, y) => {
+  addressField.value = `${ x }, ${ y }`;
+}
+
+mainPinMarker.on('move', (evt) => {
+  const { lat, lng } = evt.target.getLatLng()
+  getAddress(lat.toFixed(SYMBOLS_AFTER_COMA), lng.toFixed(SYMBOLS_AFTER_COMA));
 });
-addressField.value = startCoordinates;
+
+const secondaryPinIcon = L.icon({
+  iconUrl: 'img/pin.svg',
+  iconSize: [40, 40],
+  iconAnchor: [20, 40],
+});
+
+const someOffers = Array.from(createBookingsObject(QUANTITY_OF_OFFERS));
+
+
+
+const addSecondaryPin = (map, locationX, locationY, offer) => {
+
+  const secondaryPinMarker = L.marker(
+    {
+      lat: locationX,
+      lng: locationY,
+    },
+    {
+      icon: secondaryPinIcon,
+      keepInView: true,
+    },
+  );
+
+  secondaryPinMarker
+    .addTo(map)
+    .bindPopup(createPopup(offer));
+};
+
+someOffers.forEach(offer => {
+  const {x, y} = offer.offer.location;
+  addSecondaryPin(map, x, y, offer);
+});
