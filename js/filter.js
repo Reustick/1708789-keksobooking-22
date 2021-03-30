@@ -10,36 +10,24 @@ const filterHousingRoom = filterForm.querySelector('#housing-rooms');
 const filterHousingGuest = filterForm.querySelector('#housing-guests');
 
 const filterByTypeHouse = ({offer}, type) => {
-  if (type === ANY || offer.type === type) {
-    return true;
-  }
-  return false;
+  return type === ANY || offer.type === type 
 };
 
 const filterByPrice = ({offer}, price) => {
-  if ((price === ANY) || (offer.price >= PRICE_LIMIT.minPrice && 
+  return (price === ANY) || (offer.price >= PRICE_LIMIT.minPrice && 
     offer.price <= PRICE_LIMIT.maxPrice && 
     price === PRICE_RANK.middle) || 
     (offer.price < PRICE_LIMIT.minPrice && 
     price === PRICE_RANK.low) || (offer.price > PRICE_LIMIT.maxPrice && 
-    price === PRICE_RANK.high)) {
-    return true;
-  }
-  return false;
+    price === PRICE_RANK.high) 
 };
 
 const filterByRoom = ({offer}, room) => {
-  if (room === ANY || Number(offer.rooms) === Number(room)) {
-    return true;
-  }
-  return false;
+  return room === ANY || Number(offer.rooms) === Number(room)
 };
 
 const filterByGuest = ({offer}, guest) => {
-  if (guest === ANY || Number(offer.guests) === Number(guest)) {
-    return true;
-  }
-  return false;
+  return guest === ANY || Number(offer.guests) === Number(guest)
 };
 
 const filterByFeatures = ({offer}) => {
@@ -62,7 +50,6 @@ const filterAllOffers = (offers, quantity) => {
       filteredOffers.push(offer);
     }
   }
-
   return filteredOffers;
 };
 

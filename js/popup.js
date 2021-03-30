@@ -18,7 +18,7 @@ const showPopupAlert = (message, type) => {
   alertElement.addEventListener('click', () => {
     closePopup();
   });
-  alertElement.style.zIndex = 1000;
+  alertElement.style.zIndex = '1000';
   alertText.textContent = message;
   document.body.append(alertElement);
 };

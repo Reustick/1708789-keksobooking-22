@@ -92,7 +92,7 @@ const addAllDataToMap = (offers) => {
 const initMap = () => {
   map.on('load', () => {
     disableForm(false);
-    setAddress(START_COORDINATES.lat, START_COORDINATES.lng);
+    setAddress(START_COORDINATES.lat.toFixed(SYMBOLS_AFTER_COMA), START_COORDINATES.lng.toFixed(SYMBOLS_AFTER_COMA));
   })
     .setView({
       lat: START_COORDINATES.lat,
